@@ -1,0 +1,10 @@
+{C:/Users/Redwan Mahmud/Desktop/Year 3/CPEN 311/Lab2 Final/lab2/keyboard_control.sv} {1 {vlog -work work -sv -stats=none {C:/Users/Redwan Mahmud/Desktop/Year 3/CPEN 311/Lab2 Final/lab2/keyboard_control.sv}
+Model Technology ModelSim ALTERA vlog 10.3d Compiler 2014.10 Oct  7 2014
+-- Compiling module keyboard_control
+-- Compiling module key_tb
+
+Top level modules:
+	keyboard_control
+	key_tb
+
+} {} {}}

@@ -223,29 +223,24 @@ wire    [22:0]  flash_mem_address;
 wire    [31:0]  flash_mem_readdata;
 wire            flash_mem_readdatavalid;
 wire    [3:0]   flash_mem_byteenable;
-wire 			flash_mem_write;
+wire 				    flash_mem_write;
 wire    [31:0]  flash_mem_writedata;
-wire 	[5:0]   flash_mem_burstcount;
-logic           clock_22kHz, rst, go_now, direction, pause, restart;
-logic   [15:0]  data_out;
+wire 	  [5:0]   flash_mem_burstcount;
+wire            clock_22kHz, rst, go_now, restart, direction, pause;
+wire    [15:0]  data_out, adjust_speed;
 logic   [15:0]  display_crap;
 logic   [15:0]  display_shit;
 logic   [7:0]   audio_data;
-logic   [8:0]   adjust_speed;
 
 assign flash_mem_write = 1'b0;
 assign flash_mem_writedata = 32'b0;
 assign flash_mem_burstcount = 6'b000001;
 assign rst = SW[0];
-assign LED[0] = clock_22kHz;
-assign LED[1] = CLK_50M;
-assign LED[2] = flash_mem_readdatavalid;
 assign audio_data = data_out[15:8];
-
 
 syncronizer sync(1'b1, clock_22kHz, CLK_50M, go_now);
 
-freq_divider inst(CLK_50M, adjust_speed, clock_22kHz, rst);
+freq_divider inst(CLK_50M, adjust_speed, clock_22kHz, restart);
 
 keyboard_control keyboard(CLK_50M, rst, kbd_received_ascii_code, direction, pause, restart);
 
@@ -272,6 +267,34 @@ flash flash_inst (
 // Keyboard Interface
 //
 //
+logic [2:0] led_pos = 3'b0; //position of LED 
+logic led_flag  = 1'b0; //keeps track of where the LED is to start 
+logic clk_1hz;
+logic[31:0] clk_div_1hz;
+assign clk_div_1hz = 32'h17D7840;
+freq_divider clk_hz(CLK_50M, clk_div_1hz, clk_1hz, rst);
+always_ff @(posedge clk_1hz) 
+  begin
+    LED <= 10'b0; //turn off all LEDs 
+    LED[led_pos] <= 1'b1; //turn on the current LED position
+      begin
+        if(led_pos >= 3'b111) 
+          begin
+            led_flag <= 1'b1; // reached last flag, turn flag on; now need to go backwards
+            led_pos <= led_pos - 1'b1;// next led turns on to the right 
+          end
+        else if (led_pos == 0) 
+          begin
+            led_flag <= 1'b0; // turn off flag reached left most LED
+            led_pos <= led_pos + 1'b1; // LED to the left turns on 
+          end
+        else if(led_flag == 0)
+          led_pos <= led_pos + 1'b1; // led flag is off ligt to the right turns on
+        else 
+          led_pos <= led_pos - 1'b1; // led goes opposite side 
+      end
+  end
+
 
 wire ps2c, ps2d; //filtered kbd wires
 wire kbd_data_ready, Kbd_to_LCD_finish;

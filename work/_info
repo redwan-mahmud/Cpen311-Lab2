@@ -1,0 +1,240 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/altera/14.1
+vex2
+Z0 DXx6 sv_std 3 std 0 22 <EOTafDcUY:cQeO^ICn]m3
+!s110 1507928297
+!i10b 1
+!s100 6Z8XKW1=@4]3:`[gC?6]A2
+IDmZYJDS2X?HdeXc^ecg@a2
+Z1 V`JN@9S9cnhjKRR_L]QIcM3
+!s105 sdcd_sv_unit
+S1
+Z2 dC:/altera/14.1/projects/lab2
+w1507871093
+8C:/altera/14.1/projects/lab2/sdcd.sv
+FC:/altera/14.1/projects/lab2/sdcd.sv
+L0 1
+Z3 OV;L;10.3c;59
+r1
+!s85 0
+31
+!s108 1507928297.964000
+!s107 C:/altera/14.1/projects/lab2/sdcd.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/altera/14.1/projects/lab2/sdcd.sv|
+!i113 1
+Z4 o-work work -sv
+vex2_tb
+R0
+Z5 !s110 1508033328
+!i10b 1
+!s100 d:AKS=3lo:95Sb9m`cgjz3
+Ie2ab?@1LOI85GEA]KCAdk3
+R1
+Z6 !s105 syncronizer_sv_unit
+S1
+R2
+Z7 w1508028421
+Z8 8C:/altera/14.1/projects/lab2/syncronizer.sv
+Z9 FC:/altera/14.1/projects/lab2/syncronizer.sv
+L0 25
+R3
+r1
+!s85 0
+31
+Z10 !s108 1508033328.209000
+Z11 !s107 C:/altera/14.1/projects/lab2/syncronizer.sv|
+Z12 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/altera/14.1/projects/lab2/syncronizer.sv|
+!i113 1
+R4
+vfsm_flash
+R0
+R5
+!i10b 1
+!s100 QAe_1f8c<0?m^ikUW:F4S1
+Id8?8ehh6JYUJA@J?UFO`61
+R1
+Z13 !s105 fsm_flash_sv_unit
+S1
+R2
+Z14 w1508033318
+Z15 8C:/altera/14.1/projects/lab2/fsm_flash.sv
+Z16 FC:/altera/14.1/projects/lab2/fsm_flash.sv
+L0 1
+R3
+r1
+!s85 0
+31
+Z17 !s108 1508033328.040000
+Z18 !s107 C:/altera/14.1/projects/lab2/fsm_flash.sv|
+Z19 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/altera/14.1/projects/lab2/fsm_flash.sv|
+!i113 1
+R4
+vget_address
+R0
+R5
+!i10b 1
+!s100 d3bU1CBgb3WZ856n:o5<30
+I5ePm66Y=a?^44@Qh7cQ2X2
+R1
+Z20 !s105 get_address_sv_unit
+S1
+R2
+Z21 w1508018026
+Z22 8C:/altera/14.1/projects/lab2/get_address.sv
+Z23 FC:/altera/14.1/projects/lab2/get_address.sv
+L0 1
+R3
+r1
+!s85 0
+31
+Z24 !s108 1508033328.109000
+Z25 !s107 C:/altera/14.1/projects/lab2/get_address.sv|
+Z26 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/altera/14.1/projects/lab2/get_address.sv|
+!i113 1
+R4
+vkey_tb
+R0
+Z27 !s110 1508446100
+!i10b 1
+!s100 1mk85oSa2QKMY3Te2cD_]2
+IP_klMXM@l^GTcOBaCb>h`0
+R1
+Z28 !s105 keyboard_control_sv_unit
+S1
+Z29 dC:/Users/Redwan Mahmud/Desktop/Year 3/CPEN 311/Lab2 Final/lab2
+Z30 w1508446077
+Z31 8C:/Users/Redwan Mahmud/Desktop/Year 3/CPEN 311/Lab2 Final/lab2/keyboard_control.sv
+Z32 FC:/Users/Redwan Mahmud/Desktop/Year 3/CPEN 311/Lab2 Final/lab2/keyboard_control.sv
+L0 100
+Z33 OV;L;10.3d;59
+r1
+!s85 0
+31
+Z34 !s108 1508446100.872000
+Z35 !s107 C:/Users/Redwan Mahmud/Desktop/Year 3/CPEN 311/Lab2 Final/lab2/keyboard_control.sv|
+Z36 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Redwan Mahmud/Desktop/Year 3/CPEN 311/Lab2 Final/lab2/keyboard_control.sv|
+!i113 1
+R4
+vkeyboard_control
+R0
+R27
+!i10b 1
+!s100 EVWMH6jB7^dZY;34XkBXA2
+I8=3JJKlb=<1ORh3JaY2KX1
+R1
+R28
+S1
+R29
+R30
+R31
+R32
+L0 1
+R33
+r1
+!s85 0
+31
+R34
+R35
+R36
+!i113 1
+R4
+vregister_async_clr
+R0
+R5
+!i10b 1
+!s100 56I^m^YikLn2abF3NlMnR3
+IBeB<kV5F4a5_<dDM`LNf72
+R1
+R6
+S1
+R2
+R7
+R8
+R9
+L0 13
+R3
+r1
+!s85 0
+31
+R10
+R11
+R12
+!i113 1
+R4
+vsyncronizer
+R0
+R5
+!i10b 1
+!s100 2k?0fjo>7]VznNG2nikN=1
+IHjgF>_<KK3mmb4=lZF82;3
+R1
+R6
+S1
+R2
+R7
+R8
+R9
+L0 1
+R3
+r1
+!s85 0
+31
+R10
+R11
+R12
+!i113 1
+R4
+vtb
+R0
+R5
+!i10b 1
+!s100 fSaP`U`biaK[GWz?k4XUB1
+IM:Y4MQdA=lgz4K9l`Z=F=2
+R1
+R20
+S1
+R2
+R21
+R22
+R23
+L0 87
+R3
+r1
+!s85 0
+31
+R24
+R25
+R26
+!i113 1
+R4
+vtesting_bench
+R0
+R5
+!i10b 1
+!s100 5Q?WOJdjce>WFOD4G6i2X1
+ILK7OJ2col9fDhM8fYTlKb0
+R1
+R13
+S1
+R2
+R14
+R15
+R16
+L0 124
+R3
+r1
+!s85 0
+31
+R17
+R18
+R19
+!i113 1
+R4

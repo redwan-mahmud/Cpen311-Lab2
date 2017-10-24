@@ -1,0 +1,158 @@
+module fsm_flash (clock_50, data_in, read_data_valid, address, read_on, byteenable, rst, data_out);
+	input [31:0] data_in;
+	output logic [15:0] data_out;
+	input read_data_valid, clock_50, rst;
+	output [22:0] address;
+	output logic read_on;
+	output logic [3:0] byteenable;
+
+	logic [11:0] state;
+	logic get_new_address, odd_addr, even_addr;
+
+	parameter idle = 				12'b0000_0000_0000;
+	parameter address_get = 		12'b0001_0010_0000;
+	parameter not_address_get = 	12'b0010_0001_1111;
+	parameter even_address = 		12'b0011_0100_0000;
+	parameter address_get1 = 		12'b0100_0010_0000;
+	parameter not_address_get1 = 	12'b0101_0001_1111;
+	parameter odd_address = 		12'b0110_1000_0000;
+    
+    
+	always_comb 
+		begin
+			byteenable = state[3:0];
+			read_on = state[4];
+			get_new_address = state[5];
+			odd_addr = state[7];
+			even_addr = state[6];
+		end
+
+
+	get_address getNow(clock_50, rst, address, get_new_address, got_new_address);
+
+	always_ff @(posedge clock_50 or posedge rst)
+		begin
+			if(rst) 
+				begin
+				 	state <= idle;
+				end 
+			else
+				begin
+					case(state)
+						idle: 
+							begin
+								state <= address_get; // sets get_new_address to 1, so get_address can fetch the address. 
+							end
+						
+						address_get: // go ahead and read, this is the address
+							begin
+							    state <= not_address_get;
+							end
+
+						not_address_get:
+							begin
+								if(got_new_address & read_data_valid) state <= even_address; // switching off get new address, and reading from the flash
+							    else state <= not_address_get;
+							end
+
+						even_address:
+							begin
+							    state <= address_get1; //switching off get_new_address
+							end
+
+						address_get1:
+							begin
+								state <= not_address_get1; // sets get_new_address to 1, so get_address can fetch the next address. 
+							end
+
+						not_address_get1: // go ahead and read, this is the address
+							begin
+								if(got_new_address & read_data_valid) state <= odd_address; // switching off get new address, and reading from the flash
+							    else state <= not_address_get1;
+							end
+
+						odd_address:
+							begin
+								state <= idle;
+							end
+
+						default:
+							begin
+								state <= idle;
+							end
+
+					endcase
+				end
+		end
+
+		always_ff @(posedge read_data_valid)
+			begin
+				if(even_addr) data_out = data_in[15:0];
+				else if(odd_addr) data_out = data_in[31:16];
+			end
+
+
+endmodule
+
+module testing_bench();
+	logic [31:0] data_in;
+	logic read_data_valid, clock_50, rst;
+	wire [22:0] address;
+	wire read_on;
+	wire [3:0] byteenable;
+	wire [15:0] data_out;
+
+	fsm_flash why_is_this(clock_50, data_in, read_data_valid, address, read_on, byteenable, rst, data_out);
+
+	initial begin
+		clock_50 = 1'b0;
+		rst = 1'b1;
+		read_data_valid = 1'b0;
+		#5
+		clock_50 = 1'b1;
+		#5
+		clock_50 = 1'b0;
+		rst = 1'b0;
+		#5
+		clock_50 = 1'b1;
+		#5;
+		clock_50 = 1'b0;
+		#5
+		clock_50 = 1'b1;
+		read_data_valid = 1'b1;
+		#5
+		clock_50 = 1'b0;
+		#5
+		clock_50 = 1'b1;
+		#5
+		clock_50 = 1'b0;
+		#5
+		clock_50 = 1'b1;
+		#5
+		clock_50 = 1'b0;
+		#5
+		clock_50 = 1'b1;
+		#5
+		clock_50 = 1'b0;
+		#5
+		clock_50 = 1'b1;
+		#5
+		clock_50 = 1'b0;
+		#5
+		clock_50 = 1'b1;
+		#5
+		clock_50 = 1'b0;
+		#5
+		clock_50 = 1'b1;
+		#5
+		clock_50 = 1'b0;
+		#5
+		clock_50 = 1'b1;
+		#5
+		clock_50 = 1'b0;
+		#5;
+
+
+	end
+
+endmodule

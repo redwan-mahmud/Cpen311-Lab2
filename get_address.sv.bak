@@ -1,0 +1,66 @@
+module get_address(clk, reset, address, get_new_address);
+	input reset, clk, get_new_address;
+	output [22:0] address;
+
+	logic [2:0] state;
+	logic address_read_en;
+
+	parameter start_address = 23'h0;
+	parameter end_address = 23'h7FFFF;
+	parameter idle = 3'b000;
+	parameter get_addr = 3'b001;
+	parameter got_address = 3'b010;
+
+
+	always_ff @(posedge clk or negedge reset) 
+		begin
+			if(~get_new_address) 
+			 	state <= idle;
+			else
+				begin
+					case(state)
+						
+						idle:
+							begin
+							if(get_new_address) state <= get_addr;
+							else state <= idle;
+							end
+
+						get_addr:
+							begin
+								state <= got_address;
+							end
+
+						got_address:
+							begin
+								state <= idle;
+							end
+
+					endcase
+				end 		
+		end
+
+	assign address_read_en = state[0];
+
+	always_ff @(posedge clk or negedge reset) 
+		begin
+			if(reset)
+				new_address = start_address;
+			else
+				begin
+					if(address == end_address)
+						new_address = start_address;
+					else 
+						new_address = new_address + 1
+				end
+		end
+
+	always_ff @(posedge address_read_en)
+		begin
+			address <= new_address;
+		end
+
+
+
+
+endmodule  

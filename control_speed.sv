@@ -9,11 +9,11 @@ module control_speed(clock, dec_speed, inc_speed, defaultSpeed, speed_control);
 				speed_control <= 1136;     // no need to adjust speed for def
 
 		else if(inc_speed)
-				speed_control <= speed_control + 5;  //adding 1 hex to increase speed 
+				speed_control <= 1136 + 5;  //addin
 
 		else if (dec_speed)
-				speed_control <= speed_control - 5; // deducting 1 hex to decrease speed 
-
+				speed_control <= 1136 - 5; // deducting 
+			
 		else 
 				speed_control <= speed_control;
 		end 

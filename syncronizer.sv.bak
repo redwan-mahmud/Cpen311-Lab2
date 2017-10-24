@@ -1,0 +1,26 @@
+module syncronizer (input clk, input clk_22k, output data_out, input rst);
+logic [1:0] state;
+logic data_out;
+
+	always_ff @(posedge clk or posedge rst) 
+		begin
+			if(rst)
+				state <= idle;
+			else
+				case(state) 
+					begin	
+						idle:
+							if(!clk_22k) state <= 2'b10;
+							else state <= idle;
+						2'b10:
+							if(clk_22k) state <= 2'b11;
+							else state 2'b10;
+						default:
+							state <= idle;
+					end
+				endcase // state
+		end
+
+assign data_out = state[0];
+
+endmodule

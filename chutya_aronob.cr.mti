@@ -1,0 +1,17 @@
+C:/altera/14.1/projects/lab2/get_address.sv {1 {vlog -work work -sv -stats=none C:/altera/14.1/projects/lab2/get_address.sv
+Model Technology ModelSim ALTERA vlog 10.3c Compiler 2014.09 Sep 20 2014
+-- Compiling module get_address
+-- Compiling module tb
+
+Top level modules:
+	tb
+
+} {} {}} C:/altera/14.1/projects/lab2/fsm_flash.sv {1 {vlog -work work -sv -stats=none C:/altera/14.1/projects/lab2/fsm_flash.sv
+Model Technology ModelSim ALTERA vlog 10.3c Compiler 2014.09 Sep 20 2014
+-- Compiling module fsm_flash
+-- Compiling module testing_bench
+
+Top level modules:
+	testing_bench
+
+} {} {}}

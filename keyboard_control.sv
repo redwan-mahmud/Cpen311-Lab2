@@ -33,6 +33,8 @@ module keyboard_control (clock, reset, key_pressed, direction, pause, restart);
 										state <= start_Forward;
 								else if (key_pressed == character_B)
 										state <= start_Backward;
+								else 
+										state <= start;
 
 				start_Forward:  if(key_pressed == character_D)    // playing forward 
 										state <= pause_Forward;
@@ -93,3 +95,59 @@ module keyboard_control (clock, reset, key_pressed, direction, pause, restart);
 	
 	
 endmodule
+
+/*
+module tb();
+	logic clock, reset;
+	logic [7:0] key_pressed;
+	wire direction, pause, restart;
+
+
+	control_speed testing(clock, reset, key_pressed, direction, pause, restart);
+
+	
+
+	initial begin
+		clk = 1'b1;
+		reset = 1'b1;
+		key_pressed = 8'h45;
+
+		#5
+
+		clk = 1'b0;
+
+		#5
+
+		clk =1'b0;
+
+		key_pressed = 8'h52;
+		#5
+		clk = 1'b0;
+
+		#5
+		clk = 1'b1;
+		key_pressed = 8'h46;
+		#5
+		clk = 1'b0;
+
+
+		#5
+		clk = 1'b1;
+		key_pressed = 8'h44;
+		#5
+		clk = 1'b0;
+
+
+		#5
+		clk = 1'b1;
+		key_pressed = 8'h42;
+		#5
+		clk = 1'b0;
+
+
+		#5
+
+	end
+
+endmodule
+*/
